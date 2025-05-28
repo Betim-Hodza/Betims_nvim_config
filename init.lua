@@ -79,5 +79,4 @@ require("nvim-tree").setup({
   },
 })
 
--- Markdown rendor on
-require('render-markdown').enable()
+vim.opt.conceallevel = 1 
