@@ -4,4 +4,5 @@
 -- open tree file manager like so
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", "<leader>ff", vim.cmd.NvimTreeToggle)
 

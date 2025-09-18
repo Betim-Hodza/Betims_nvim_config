@@ -5,6 +5,8 @@ require("baytizzel")
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
+vim.opt.clipboard = "unnamedplus"
+
 -- set vim colorscheme
 vim.cmd("colorscheme carbonfox")
 
@@ -78,5 +80,6 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
 
 vim.opt.conceallevel = 1 
