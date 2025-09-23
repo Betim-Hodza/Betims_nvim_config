@@ -1,8 +1,11 @@
--- file for remapping keys
--- still learning but gonna do what makes sense for me
-
--- open tree file manager like so
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeToggle)
-vim.keymap.set("n", "<leader>ff", vim.cmd.NvimTreeToggle)
+local map = vim.keymap.set
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+map("n", "gr", vim.lsp.buf.references, { desc = "Go to References" })
+map("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+map("n", "<leader>fm", vim.lsp.buf.format, { desc = "Format File" })
+map("n", "<leader>pv", vim.cmd.NvimTreeToggle, { desc = "open file exlporer"})
+map("n", "<leader>ff", vim.cmd.NvimTreeToggle, { desc = "find file"})
 

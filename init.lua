@@ -8,7 +8,7 @@ vim.o.shiftwidth = 2
 vim.opt.clipboard = "unnamedplus"
 
 -- set vim colorscheme
-vim.cmd("colorscheme carbonfox")
+vim.cmd("colorscheme catppuccin")
 
 -- lualine default to change
 -- https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file
