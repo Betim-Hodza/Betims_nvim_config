@@ -7,7 +7,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "clangd", "pyright" }, -- Install clangd and pyright
+      ensure_installed = { "clangd", "pyright" },
       automatic_installation = true,
     },
   },
@@ -18,23 +18,30 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-      local lspconfig = require("lspconfig")
       local capabilities = vim.tbl_deep_extend(
         "force",
         vim.lsp.protocol.make_client_capabilities(),
         require("cmp_nvim_lsp").default_capabilities()
       )
 
-      -- Setup clangd for C/C++
-      lspconfig.clangd.setup({
+      -- Global (default) config override
+      vim.lsp.config("*", {
         capabilities = capabilities,
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+      })
+			
+			vim.lsp.config("zls", {
+				cmd = { "zls" },
+				filestypes = { "zig", "zir" },
+			})
+
+      -- clangd config override
+      vim.lsp.config("clangd", {
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "yacc", "flex", "bison" },
         cmd = { "clangd", "--background-index" },
       })
 
-      -- Setup pyright for Python
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
+      -- pyright config override
+      vim.lsp.config("pyright", {
         settings = {
           python = {
             analysis = {
@@ -45,6 +52,10 @@ return {
           },
         },
       })
+
+      -- Enable both servers
+      vim.lsp.enable({ "clangd", "pyright", "zls" })
     end,
   },
 }
+

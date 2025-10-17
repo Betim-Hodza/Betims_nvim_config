@@ -9,7 +9,6 @@ return {
         sources = {
           null_ls.builtins.formatting.clang_format, -- C/C++ formatting
           null_ls.builtins.formatting.black,        -- Python formatting
-          null_ls.builtins.diagnostics.ruff,        -- Python linting
         },
       })
     end,
