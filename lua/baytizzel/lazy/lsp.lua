@@ -34,6 +34,11 @@ return {
 				filestypes = { "zig", "zir" },
 			})
 
+			vim.lsp.config("gopls", {
+				cmd = { "gopls" },
+				filestypes = { "go" },
+			})
+
       -- clangd config override
       vim.lsp.config("clangd", {
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "yacc", "flex", "bison" },
@@ -54,7 +59,7 @@ return {
       })
 
       -- Enable both servers
-      vim.lsp.enable({ "clangd", "pyright", "zls" })
+      vim.lsp.enable({ "clangd", "pyright", "zls", "gopls" })
     end,
   },
 }
