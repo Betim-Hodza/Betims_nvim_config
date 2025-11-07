@@ -43,7 +43,7 @@ return {
 
 			-- clangd config override
 			vim.lsp.config("clangd", {
-				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "yacc", "flex", "bison" },
+				filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 				cmd = { "clangd", "--background-index" },
 			})
 
@@ -60,8 +60,39 @@ return {
 				},
 			})
 
+			vim.lsp.config("texlab", {
+				settings = {
+					texlab = {
+						auxDirectory = ".",
+						bibtexFormatter = "texlab",
+						build = {
+							args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+							executable = "latexmk",
+							forwardSearchAfter = false,
+							onSave = true,
+						},
+						diagnosticsDelay = 300,
+						formatterLineLength = 80,
+						forwardSearch = {
+							executable = "zathura",
+							args = {
+								"--synctex-forward",
+								"%l:1:%f",
+								"%p",
+							},
+						},
+						latexFormatter = "latexindent",
+						latexindent = {
+							modifyLineBreaks = true,
+						},
+					},
+				},
+				filetypes = { "tex", "plaintex", "bib" },
+				root_dir = require("lspconfig.util").root_pattern("*.tex", ".git"),
+			})
+
 			-- Enable both servers
-			vim.lsp.enable({ "clangd", "pyright", "zls", "gopls" })
+			vim.lsp.enable({ "clangd", "pyright", "zls", "gopls", "texlab" })
 		end,
 	},
 }
